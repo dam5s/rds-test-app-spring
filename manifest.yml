@@ -1,0 +1,10 @@
+---
+applications:
+- name: rds-test-app
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.15
+  memory: 512M
+  path: build/libs/rds-test-app-spring.jar
+  instances: 1
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{jre: {version: 10.0.2_+}, memory_calculator: {stack_threads: 50}}'
+    JAVA_OPTS: -Djavax.net.ssl.trustStore=/home/vcap/app/BOOT-INF/classes/cacerts -Djavax.net.ssl.trustStorePassword=changeme -Djavax.net.ssl.trustStoreType=JKS
